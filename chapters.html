@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapters</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: white;
+            background-image: url('background.jpg'); /* صورة الخلفية */
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
+        .container {
+            text-align: center;
+            padding: 50px;
+        }
+        .container img {
+            max-width: 200px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            border: 3px solid gold;
+        }
+        .container h1 {
+            font-size: 30px;
+            color: gold;
+            text-shadow: 0 0 10px gold, 0 0 20px gold;
+        }
+        .chapter-list {
+            margin-top: 30px;
+        }
+        .chapter {
+            background-color: rgba(0, 0, 0, 0.8);
+            border: 2px solid gold;
+            padding: 10px;
+            margin: 10px auto;
+            width: 300px;
+            text-align: center;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .chapter:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px gold;
+        }
+        .chapter a {
+            text-decoration: none;
+            color: gold;
+            font-size: 18px;
+        }
+
+        /* تصميم النافذة المنبثقة */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: black;
+            border: 3px solid gold;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 400px;
+        }
+        .modal-content h2 {
+            color: gold;
+            margin-bottom: 15px;
+        }
+        .modal-content p {
+            color: white;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .close-btn {
+            background-color: gold;
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .close-btn:hover {
+            background-color: darkgoldenrod;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img id="manhwaImage" src="" alt="Manhwa Image">
+        <h1 id="manhwaName"></h1>
+        <div class="chapter-list">
+            <div class="chapter" onclick="showModal()">Chapter 1</div>
+            <div class="chapter" onclick="showModal()">Chapter 2</div>
+            <div class="chapter" onclick="showModal()">Chapter 3</div>
+            <div class="chapter" onclick="showModal()">Chapter 4</div>
+            <div class="chapter" onclick="showModal()">Chapter 5</div>
+        </div>
+    </div>
+
+    <!-- النافذة المنبثقة -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <h2>Notice</h2>
+            <p>This website is a showcase of my design skills. No content is currently available.</p>
+            <button class="close-btn" onclick="closeModal()">Okay</button>
+        </div>
+    </div>
+
+    <script>
+        // عرض معلومات المانوا المختارة
+        const params = new URLSearchParams(window.location.search);
+        const manhwaName = params.get('manhwa');
+        const manhwaImage = params.get('image');
+
+        document.getElementById('manhwaName').textContent = manhwaName;
+        document.getElementById('manhwaImage').src = manhwaImage;
+
+        // إظهار النافذة المنبثقة
+        function showModal() {
+            const modal = document.getElementById('modal');
+            modal.style.display = 'flex';
+        }
+
+        // إغلاق النافذة المنبثقة
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.style.display = 'none';
+        }
+    </script>
+</body>
+</html>

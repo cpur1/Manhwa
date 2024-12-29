@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manhwa Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: white;
+            background-image: url('background.jpg'); /* صورة الخلفية */
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
+        .header {
+            text-align: center;
+            padding: 50px 0;
+            color: white;
+        }
+        .header h1 {
+            font-size: 50px;
+            font-weight: bold;
+            color: gold;
+            text-shadow: 0 0 10px gold, 0 0 20px gold;
+        }
+        .search-bar {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .search-bar input {
+            width: 300px;
+            padding: 10px;
+            border: 2px solid gold;
+            border-radius: 5px;
+            background-color: black;
+            color: white;
+        }
+        .search-bar input::placeholder {
+            color: gold;
+        }
+        .gallery {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+        }
+        .gallery div {
+            background-color: rgba(0, 0, 0, 0.8);
+            border: 2px solid gold;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+        .gallery div:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px gold;
+        }
+        .gallery img {
+            width: 150px;
+            height: 200px;
+            border-radius: 5px;
+        }
+        .gallery p {
+            margin-top: 10px;
+            font-size: 16px;
+            color: gold;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Cairo Dev</h1>
+    </div>
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="ابحث عن مانهوا..." onkeyup="filterManhwa()">
+    </div>
+    <div class="gallery" id="manhwaGallery">
+        <div data-name="Manhwa 1" onclick="openChapters('Manhwa 1', 'manhwa1.jpg')">
+            <img src="manhwa1.jpg" alt="Manhwa 1">
+            <p>Manhwa 1</p>
+        </div>
+        <div data-name="Manhwa 2" onclick="openChapters('Manhwa 2', 'manhwa2.jpg')">
+            <img src="manhwa2.jpg" alt="Manhwa 2">
+            <p>Manhwa 2</p>
+        </div>
+        <div data-name="Manhwa 3" onclick="openChapters('Manhwa 3', 'manhwa3.jpg')">
+            <img src="manhwa3.jpg" alt="Manhwa 3">
+            <p>Manhwa 3</p>
+        </div>
+        <div data-name="Manhwa 4" onclick="openChapters('Manhwa 4', 'manhwa4.jpg')">
+            <img src="manhwa4.jpg" alt="Manhwa 4">
+            <p>Manhwa 4</p>
+        </div>
+        <div data-name="Manhwa 5" onclick="openChapters('Manhwa 5', 'manhwa5.jpg')">
+            <img src="manhwa5.jpg" alt="Manhwa 5">
+            <p>Manhwa 5</p>
+        </div>
+    </div>
+    <script>
+        function openChapters(manhwaName, image) {
+            // الانتقال إلى صفحة الفصول مع تمرير اسم المانوا وصورتها
+            window.location.href = `chapters.html?manhwa=${encodeURIComponent(manhwaName)}&image=${encodeURIComponent(image)}`;
+        }
+
+        function filterManhwa() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const gallery = document.getElementById('manhwaGallery');
+            const items = gallery.querySelectorAll('div');
+
+            items.forEach(item => {
+                const name = item.getAttribute('data-name').toLowerCase();
+                if (name.includes(input)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
